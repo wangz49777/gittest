@@ -1,0 +1,223 @@
+shared_library("libopencv4_core") {
+    sources = [
+        "modules/core/src/algorithm.cpp",
+        "modules/core/src/alloc.cpp",
+        "modules/core/src/arithm.cpp",
+        "modules/core/src/arithm.dispatch.cpp",
+        "modules/core/src/array.cpp",
+        "modules/core/src/async.cpp",
+        "modules/core/src/batch_distance.cpp",
+        "modules/core/src/bindings_utils.cpp",
+        "modules/core/src/buffer_area.cpp",
+        "modules/core/src/channels.cpp",
+        "modules/core/src/check.cpp",
+        "modules/core/src/command_line_parser.cpp",
+        "modules/core/src/conjugate_gradient.cpp",
+        "modules/core/src/convert.dispatch.cpp",
+        "modules/core/src/convert_c.cpp",
+        "modules/core/src/convert_scale.dispatch.cpp",
+        "modules/core/src/copy.cpp",
+        "modules/core/src/count_non_zero.dispatch.cpp",
+        "modules/core/src/cuda_gpu_mat.cpp",
+        "modules/core/src/cuda_gpu_mat_nd.cpp",
+        "modules/core/src/cuda_host_mem.cpp",
+        "modules/core/src/cuda_info.cpp",
+        "modules/core/src/cuda_stream.cpp",
+        "modules/core/src/datastructs.cpp",
+        "modules/core/src/directx.cpp",
+        "modules/core/src/downhill_simplex.cpp",
+        "modules/core/src/dxt.cpp",
+        "modules/core/src/gl_core_3_1.cpp",
+        "modules/core/src/glob.cpp",
+        "modules/core/src/hal_internal.cpp",
+        "modules/core/src/kmeans.cpp",
+        "modules/core/src/lapack.cpp",
+        "modules/core/src/lda.cpp",
+        "modules/core/src/logger.cpp",
+        "modules/core/src/lpsolver.cpp",
+        "modules/core/src/lut.cpp",
+        "modules/core/src/mathfuncs.cpp",
+        "modules/core/src/mathfuncs_core.dispatch.cpp",
+        "modules/core/src/matmul.dispatch.cpp",
+        "modules/core/src/matrix.cpp",
+        "modules/core/src/matrix_c.cpp",
+        "modules/core/src/matrix_decomp.cpp",
+        "modules/core/src/matrix_expressions.cpp",
+        "modules/core/src/matrix_iterator.cpp",
+        "modules/core/src/matrix_operations.cpp",
+        "modules/core/src/matrix_sparse.cpp",
+        "modules/core/src/matrix_transform.cpp",
+        "modules/core/src/matrix_wrap.cpp",
+        "modules/core/src/mean.dispatch.cpp",
+        "modules/core/src/merge.dispatch.cpp",
+        "modules/core/src/minmax.cpp",
+        "modules/core/src/norm.cpp",
+        "modules/core/src/ocl.cpp",
+        "modules/core/src/opencl/runtime/opencl_clamdblas.cpp",
+        "modules/core/src/opencl/runtime/opencl_clamdfft.cpp",
+        "modules/core/src/opencl/runtime/opencl_core.cpp",
+        "modules/core/src/opengl.cpp",
+        "modules/core/src/out.cpp",
+        "modules/core/src/ovx.cpp",
+        "modules/core/src/parallel.cpp",
+        "modules/core/src/parallel/parallel.cpp",
+        "modules/core/src/parallel/parallel_openmp.cpp",
+        "modules/core/src/parallel/parallel_tbb.cpp",
+        "modules/core/src/parallel_impl.cpp",
+        "modules/core/src/pca.cpp",
+        "modules/core/src/persistence.cpp",
+        "modules/core/src/persistence_json.cpp",
+        "modules/core/src/persistence_types.cpp",
+        "modules/core/src/persistence_xml.cpp",
+        "modules/core/src/persistence_yml.cpp",
+        "modules/core/src/rand.cpp",
+        "modules/core/src/softfloat.cpp",
+        "modules/core/src/split.dispatch.cpp",
+        "modules/core/src/stat.dispatch.cpp",
+        "modules/core/src/stat_c.cpp",
+        "modules/core/src/stl.cpp",
+        "modules/core/src/sum.dispatch.cpp",
+        "modules/core/src/system.cpp",
+        "modules/core/src/tables.cpp",
+        "modules/core/src/trace.cpp",
+        "modules/core/src/types.cpp",
+        "modules/core/src/umatrix.cpp",
+        "modules/core/src/utils/datafile.cpp",
+        "modules/core/src/utils/filesystem.cpp",
+        "modules/core/src/utils/logtagconfigparser.cpp",
+        "modules/core/src/utils/logtagmanager.cpp",
+        "modules/core/src/utils/samples.cpp",
+        "modules/core/src/va_intel.cpp",
+    ]
+    defines = [ 
+        # "NDEBUG",
+        # "CVAPI_EXPORTS",
+        # "_USE_MATH_DEFINES",
+        # "__OPENCV_BUILD=1",
+        # "__STDC_CONSTANT_MACROS", 
+        # "__STDC_FORMAT_MACROS", 
+        # "__STDC_LIMIT_MACROS", 
+        
+
+        # "__CUDACC__", 
+        # "CV_NEON", 
+        # "CV_FP16"
+        ]
+    cflags_c = []
+    cflags_cc = []
+    cflags_c += [
+        "-fexceptions",
+        "-frtti",
+        "-fno-strict-aliasing",
+        "-fvisibility-inlines-hidden",
+        # "-O3",
+    ]
+    cflags_c += [
+        "-msse4.1",
+        "-msse3",
+        "-mfloat-abi=softfp",
+        "-mfpu=neon",
+    ]
+    cflags_cc += [
+        "-fexceptions",
+        "-frtti",
+        "-fpic",
+        "-funwind-tables",
+        "-finline-limit=64",
+        "-fsigned-char",
+        "-no-canonical-prefixes",
+    ]
+    cflags_cc += [
+        "-Wno-psabi",
+    ]
+    cflags_cc += [
+        # "-mfloat-abi=softfp",
+        # "-mfpu=neon-fp16",
+        "-fdata-sections",
+        "-ffunction-sections",
+        "-Wa,--noexecstack",
+        "-fsigned-char",
+    ]
+    cflags_cc += [
+        "-W",
+        "-Wall",
+        "-Werror=return-type",
+        "-Werror=non-virtual-dtor",
+        "-Werror=address",
+        "-Werror=sequence-point",
+        "-Wformat",
+    ]
+
+    cflags_cc += [
+        "-Werror=format-security",
+        "-Wmissing-declarations",
+        "-Wundef",
+        "-Winit-self",
+        "-Wpointer-arith",
+        "-Wshadow",
+        "-Wsign-promo",
+    ]
+    cflags_cc += [
+        "-Wuninitialized",
+        "-Winit-self",
+        "-Wno-marrowing",
+        "-Wno-delete-non-vritual-dtor",
+        "-Wno-comment",
+        "-fdiagnostics-show-option",
+
+    ]
+    cflags_cc += [
+        "-fomit-frame-pointer",
+        # "-mthumb",
+        # "-fomit-frame-pointer",
+    ]
+    cflags_cc += [
+        "-fstack-protector",
+        "-Wl,-z,relro",
+        "-Wl,-z,now",
+        "-fPIC",
+        "-pie",
+        "-Wl,-z,noexecstack",
+        "-Wl,--disable-new-dtags",
+        "-s",
+        "-D_FORTIFY_SOURCE=2",
+        "-O2",
+
+    ]
+    cflags_cc += [
+        "-msse4.1",
+        "-msse3",
+        # "-O3",
+        # "-mfpu=neon",
+        # "-mfloat-abi=softfp",
+        # "-mfpu=neon-fp16",
+    ]
+    cflags_cc += [
+        "-fno-strict-aliasing",
+        "-O3",
+        "-DNDEBUG",
+        # "-DANDROID",
+        "-DCVAPI_EXPORTS",
+        "-D_USE_MATH_DEFINES",
+        "-D__OPENCV_BUILD=1",
+        "-D__STDC_CONSTANT_MACROS", 
+        "-D__STDC_FORMAT_MACROS", 
+        "-D__STDC_LIMIT_MACROS", 
+        # "-DCV_NEON=1",
+        # "-DCV_FP16=1",
+        "--std=c++14",
+    ]
+
+    cflags_c += [
+        "-Wundef",
+    ]
+
+    include_dirs = [ "//include" ]
+    include_dirs += [ "//modules/core/include" ]
+    include_dirs += [ "/usr/local/include/opencv4" ]
+    include_dirs += [ "/usr/local/include/opencv4/opencv2" ]
+    include_dirs += [ "//out_gn" ]
+    include_dirs += [ "//out_gn/modules/core" ]
+    include_dirs += [ "//out_gn/3rdparty/ippicv/ippicv_lnx/iw/include" ]
+    include_dirs += [ "//out_gn/3rdparty/ippicv/ippicv_lnx/icv/include" ]
+}
