@@ -89,35 +89,9 @@ shared_library("libopencv4_core") {
         "modules/core/src/utils/samples.cpp",
         "modules/core/src/va_intel.cpp",
     ]
-    defines = [ 
-        # "NDEBUG",
-        # "CVAPI_EXPORTS",
-        # "_USE_MATH_DEFINES",
-        # "__OPENCV_BUILD=1",
-        # "__STDC_CONSTANT_MACROS", 
-        # "__STDC_FORMAT_MACROS", 
-        # "__STDC_LIMIT_MACROS", 
-        
-
-        # "__CUDACC__", 
-        # "CV_NEON", 
-        # "CV_FP16"
-        ]
     cflags_c = []
     cflags_cc = []
-    cflags_c += [
-        "-fexceptions",
-        "-frtti",
-        "-fno-strict-aliasing",
-        "-fvisibility-inlines-hidden",
-        # "-O3",
-    ]
-    cflags_c += [
-        "-msse4.1",
-        "-msse3",
-        "-mfloat-abi=softfp",
-        "-mfpu=neon",
-    ]
+    
     cflags_cc += [
         "-fexceptions",
         "-frtti",
@@ -131,8 +105,8 @@ shared_library("libopencv4_core") {
         "-Wno-psabi",
     ]
     cflags_cc += [
-        # "-mfloat-abi=softfp",
-        # "-mfpu=neon-fp16",
+        "-mfloat-abi=softfp",
+        "-mfpu=neon-fp16", # "-mfpu=neon-vfpv3-d16",
         "-fdata-sections",
         "-ffunction-sections",
         "-Wa,--noexecstack",
@@ -160,37 +134,14 @@ shared_library("libopencv4_core") {
     cflags_cc += [
         "-Wuninitialized",
         "-Winit-self",
-        "-Wno-marrowing",
-        "-Wno-delete-non-vritual-dtor",
+        "-Wno-narrowing",
+        "-Wno-delete-non-virtual-dtor",
         "-Wno-comment",
         "-fdiagnostics-show-option",
-
     ]
     cflags_cc += [
         "-fomit-frame-pointer",
-        # "-mthumb",
-        # "-fomit-frame-pointer",
-    ]
-    cflags_cc += [
-        "-fstack-protector",
-        "-Wl,-z,relro",
-        "-Wl,-z,now",
-        "-fPIC",
-        "-pie",
-        "-Wl,-z,noexecstack",
-        "-Wl,--disable-new-dtags",
-        "-s",
-        "-D_FORTIFY_SOURCE=2",
-        "-O2",
-
-    ]
-    cflags_cc += [
-        "-msse4.1",
-        "-msse3",
-        # "-O3",
-        # "-mfpu=neon",
-        # "-mfloat-abi=softfp",
-        # "-mfpu=neon-fp16",
+        "-mthumb",
     ]
     cflags_cc += [
         "-fno-strict-aliasing",
@@ -207,10 +158,30 @@ shared_library("libopencv4_core") {
         # "-DCV_FP16=1",
         "--std=c++14",
     ]
-
-    cflags_c += [
-        "-Wundef",
+    cflags_cc += [
+        "-fstack-protector",
+        "-Wl,-z,relro",
+        "-Wl,-z,now",
+        "-fPIC",
+        "-Wl,-z,noexecstack",
+        "-s",
+        "-D_FORTIFY_SOURCE=2",
+        "-O2",
     ]
+    cflags_cc += [
+        "-Wno-error=c++11-narrowing",
+        "-frtti",
+    ]
+    cflags_cc += [
+        "-Wno-c++11-narrowing",
+
+    ]
+
+    cflags_cc += [
+        # "-msse4.1",
+        "-msse3",
+    ]
+    
 
     include_dirs = [ "//include" ]
     include_dirs += [ "//modules/core/include" ]
